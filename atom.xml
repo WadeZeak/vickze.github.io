@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yk95.top/"/>
-  <updated>2017-05-29T16:20:11.842Z</updated>
+  <updated>2017-05-29T16:20:56.013Z</updated>
   <id>http://yk95.top/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yk95.top/2017/05/30/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAGithub%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yk95.top/2017/05/30/使用Hexo搭建个人Github博客/</id>
     <published>2017-05-29T16:00:00.000Z</published>
-    <updated>2017-05-29T16:20:11.842Z</updated>
+    <updated>2017-05-29T16:20:56.013Z</updated>
     
     <content type="html"><![CDATA[<p>参考网上的文章总算把自己的Github博客搭建出来了，在这把我的搭建步骤分享给大家，后面的内容还包括了配置域名，如已搭建成功了想要使用自己的域名访问博客可以直接跳到配置域名部分。<br><a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="external">搭建个人博客-hexo+github详细完整步骤</a><br><a href="http://blog.csdn.net/jzooo/article/details/46781805" target="_blank" rel="external">零基础免费搭建个人博客-hexo+github</a><br>上面两个链接是我所参考的文章，写的也很详细，如果没看懂我的步骤也可以看看上面的。</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h1><p>我们需要安装Git、Node.js、Hexo以及注册一个GitHub账号。<br>下载Git、Nodejs可以选择在官网下载，也可以去CSDN下载，大部分都是不需要积分的。PS：官网下载网速超级慢，不知道是资源问题还是墙的原因。<br><a href="https://git-for-windows.github.io/" target="_blank" rel="external">Git官网下载地址</a><br><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网下载地址</a><br><a href="http://download.csdn.net/search/0/10/0/2/1/Git%202.13.0" target="_blank" rel="external">Git CSDN下载</a><br><a href="http://download.csdn.net/search/0/10/0/2/1/Node.js%20v6.10.3" target="_blank" rel="external">Node.js CSDN下载</a></p>
@@ -67,7 +67,7 @@
 <p><img src="/static/img/2017-5-29_16-54-21.png" alt=""></p>
 <p>接下来就是正式写博客正文了，写的文章要遵循markdown语法。<br>附上链接：<a href="http://www.appinn.com/markdown/#img" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a><br>写好博客后就可以使用命令 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 发布到Github了（域名访问的请去掉 <code>hexo clean</code>），见效果。</p>
 <p><img src="/static/img/2017-5-29_19-55-23.png" alt=""></p>
-<p>至此，本篇博客搭建教程介绍 完毕，最后再附上一些链接：<br><a href="http://www.jianshu.com/p/ab44b916a8b6" target="_blank" rel="external">Hexo 博客添加百度sitemap</a><br><a href="http://hui-wang.info/2016/10/23/Hexo%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%99%BE%E5%BA%A6%E4%B8%BB%E5%8A%A8%E6%8F%90%E4%BA%A4%E9%93%BE%E6%8E%A5/" target="_blank" rel="external">Hexo插件之百度主动提交链接</a><br><a href="https://ninghao.net/blog/4449" target="_blank" rel="external">用阿里云的免费 SSL 证书让网站从 HTTP 换成 HTTPS</a></p>
+<p>至此，本篇博客搭建教程介绍 完毕，最后再附上一些链接：<br><a href="http://www.jianshu.com/p/ab44b916a8b6" target="_blank" rel="external">Hexo博客添加百度sitemap</a><br><a href="http://hui-wang.info/2016/10/23/Hexo%E6%8F%92%E4%BB%B6%E4%B9%8B%E7%99%BE%E5%BA%A6%E4%B8%BB%E5%8A%A8%E6%8F%90%E4%BA%A4%E9%93%BE%E6%8E%A5/" target="_blank" rel="external">Hexo插件之百度主动提交链接</a><br><a href="https://ninghao.net/blog/4449" target="_blank" rel="external">用阿里云的免费 SSL 证书让网站从 HTTP 换成 HTTPS</a></p>
 ]]></content>
     
     <summary type="html">
