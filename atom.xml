@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yk95.top/"/>
-  <updated>2018-01-12T13:28:56.988Z</updated>
+  <updated>2018-01-12T13:32:43.757Z</updated>
   <id>http://yk95.top/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Java实现Redis、Zookeeper分布式锁</title>
-    <link href="http://yk95.top/2018/02/01/Java%E5%AE%9E%E7%8E%B0Redis%E3%80%81Zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
-    <id>http://yk95.top/2018/02/01/Java实现Redis、Zookeeper分布式锁/</id>
-    <published>2018-01-31T16:00:00.000Z</published>
-    <updated>2018-01-12T13:28:56.988Z</updated>
+    <link href="http://yk95.top/2018/01/12/Java%E5%AE%9E%E7%8E%B0Redis%E3%80%81Zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
+    <id>http://yk95.top/2018/01/12/Java实现Redis、Zookeeper分布式锁/</id>
+    <published>2018-01-11T16:00:00.000Z</published>
+    <updated>2018-01-12T13:32:43.757Z</updated>
     
     <content type="html"><![CDATA[<p>在单机环境下，使用volatile、synchronized关键字或者Jdk的各种并发API可以实现线程安全，<br>但是这些在分布式环境下是无法保证线程安全的，所以在分布式环境下需要使用到分布式锁，分布<br>式锁的实现目前有多种方案，可以使用数据库悲观、乐观锁，Redis、Memcached、Zookeeper分布<br>式锁，下面分享Redis、Zookeeper分布式锁的实现代码。</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="1、Reids分布式锁"><a href="#1、Reids分布式锁" class="headerlink" title="1、Reids分布式锁"></a>1、Reids分布式锁</h2><pre><code>private final Logger logger = LoggerFactory.getLogger(getClass());
