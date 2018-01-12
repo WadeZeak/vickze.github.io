@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yk95.top/"/>
-  <updated>2017-05-30T11:55:17.629Z</updated>
+  <updated>2018-01-12T13:28:56.988Z</updated>
   <id>http://yk95.top/</id>
   
   <author>
@@ -14,6 +14,377 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java实现Redis、Zookeeper分布式锁</title>
+    <link href="http://yk95.top/2018/02/01/Java%E5%AE%9E%E7%8E%B0Redis%E3%80%81Zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
+    <id>http://yk95.top/2018/02/01/Java实现Redis、Zookeeper分布式锁/</id>
+    <published>2018-01-31T16:00:00.000Z</published>
+    <updated>2018-01-12T13:28:56.988Z</updated>
+    
+    <content type="html"><![CDATA[<p>在单机环境下，使用volatile、synchronized关键字或者Jdk的各种并发API可以实现线程安全，<br>但是这些在分布式环境下是无法保证线程安全的，所以在分布式环境下需要使用到分布式锁，分布<br>式锁的实现目前有多种方案，可以使用数据库悲观、乐观锁，Redis、Memcached、Zookeeper分布<br>式锁，下面分享Redis、Zookeeper分布式锁的实现代码。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="1、Reids分布式锁"><a href="#1、Reids分布式锁" class="headerlink" title="1、Reids分布式锁"></a>1、Reids分布式锁</h2><pre><code>private final Logger logger = LoggerFactory.getLogger(getClass());
+
+private ShardedJedisPool shardedJedisPool;
+
+/**
+ * 锁ID
+ */
+private final String lockId;
+
+/**
+ * 锁命名空间
+ */
+private final String lockNameSpace;
+
+/**
+ * 锁key值
+ */
+private final String lockKey;
+
+/**
+ * 锁超时时间，防止线程在入锁以后，无限的执行等待，默认30秒
+ */
+private static final long EXPIRE_SECS = 30;
+
+/**
+ * 随机等待时间最小值
+ */
+private static final int MIN_RANDOM_SECS = 10;
+
+/**
+ * 随机等待时间最大值
+ */
+private static final int MAX_RANDOM_SECS = 300;
+
+/**
+ * 是否持有锁
+ */
+private volatile boolean locked = false;
+
+
+public RedisLock(ShardedJedisPool shardedJedisPool, String lockNameSpace, String lockKey) {
+    this.lockId = UUID.randomUUID().toString();
+    this.shardedJedisPool = shardedJedisPool;
+    this.lockNameSpace = lockNameSpace + &quot;:&quot;;
+    this.lockKey = lockKey;
+}
+
+@Override
+public void lock() {
+    if (this.tryLock()) {
+        return;
+    }
+    throw new RuntimeException(&quot;未能拿到锁&quot;);
+}
+
+@Override
+public void lockInterruptibly() throws InterruptedException {
+    this.lock();
+}
+
+@Override
+public boolean tryLock() {
+    String lock = lockNameSpace + lockKey;
+    if (setNxAndExpire(lock, lockId, EXPIRE_SECS)) {
+        // 获得锁
+        locked = true;
+    }
+    return locked;
+}
+
+/**
+ * Redis分布式锁
+ * 实现思路：
+ * 使用了redis的set nx expire命令，缓存锁
+ * 执行过程：
+ * 通过setNx尝试设置某个key的值，成功（当前没有这个锁）则返回，成功获得锁
+ * 失败，则等待，继续尝试获取锁，如等待超时，返回（未获得锁）
+ *
+ * @param time 锁等待时间
+ * @return
+ * @throws InterruptedException
+ */
+@Override
+public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+    String lock = lockNameSpace + lockKey;
+    long timeout = unit.toMillis(time);
+    while (timeout &gt;= 0) {
+        if (setNxAndExpire(lock, lockId, EXPIRE_SECS)) {
+            // 获得锁
+            locked = true;
+            return locked;
+        }
+
+        // 生成[10-200]区间的随机毫秒
+        long delayMills = generateRandomMills(MIN_RANDOM_SECS, MAX_RANDOM_SECS);
+        timeout -= delayMills;
+        logger.debug(&quot;等待锁，锁ID：{}，锁值：{}，等待时长：{}ms&quot;, lockId, lock, delayMills);
+        /*
+            延迟随机毫秒,防止饥饿进程的出现,即,当同时到达多个进程,只会有一个进程获得锁,其他的都用同样的频率进行尝试,
+            后面有来了一些进行,也以同样的频率申请锁,这将可能导致前面来的锁得不到满足.
+            使用随机的等待时间可以一定程度上保证公平性
+         */
+        Thread.sleep(delayMills);
+    }
+
+    return locked;
+}
+
+/**
+ * 释放锁
+ */
+public void unlock() {
+    if (locked) {
+        String lock = lockNameSpace + lockKey;
+        ShardedJedis shardedJedis = shardedJedisPool.getResource();
+        //避免删除非自己获取得到的锁
+        if (lockId.equals(shardedJedis.get(lock))) {
+            shardedJedis.del(lock);
+        }
+        shardedJedis.close();
+        locked = false;
+    }
+}
+
+@Override
+public Condition newCondition() {
+    return null;
+}
+
+/**
+ * 生成[min - max]区间的随机毫秒
+ *
+ * @param min
+ * @param max
+ * @return
+ */
+private long generateRandomMills(int min, int max) {
+    Random random = new Random();
+    // randNumber 将被赋值为一个 MIN 和 MAX 范围内的随机数
+    return random.nextInt(max - min + 1) + min;
+}
+
+/**
+ * setNX命令不支持expire，所以使用set命令，同时使用nx与expire
+ *
+ * @param key
+ * @param value
+ * @param expire 毫秒
+ * @return
+ */
+private boolean setNxAndExpire(final String key, final String value, final long expire) {
+    ShardedJedis shardedJedis = shardedJedisPool.getResource();
+    String result = shardedJedis.set(key, value, &quot;NX&quot;, &quot;PX&quot;, expire);
+    shardedJedis.close();
+    return &quot;OK&quot;.equals(result);
+}
+</code></pre><p>看的网上很多redis分布式实现都是使用setNx命令再expire，其实redis已经支持一个命令直接<br>setNx并且给上expire，这个建议直接使用Jedis，Spring封装的ReidsTemplate中并没有找到<br>setNx并同时给上expire的方法</p>
+<h2 id="2、Zookeeper分布式锁"><a href="#2、Zookeeper分布式锁" class="headerlink" title="2、Zookeeper分布式锁"></a>2、Zookeeper分布式锁</h2><pre><code>private final Logger logger = LoggerFactory.getLogger(getClass());
+
+private ZooKeeper zooKeeper;
+//锁根节点
+private final String lockNamespace;
+//锁值节点
+private final String lockKey;
+//当前节点
+private String currentNode;
+//等待的前一个节点
+private String waitNode;
+//竞争的节点列表
+private List&lt;String&gt; lockNodes;
+
+//计数器
+private volatile CountDownLatch countDownLatch;
+
+/**
+ * 是否持有锁
+ */
+private volatile boolean locked = false;
+
+
+public ZookeeperLock(String address, int timeout, String lockNamespace, String lockKey) {
+    init(address, timeout);
+    this.lockNamespace = &quot;/&quot; + lockNamespace;
+    this.lockKey = lockKey + &quot;_&quot;;
+}
+
+private void init(String address, int timeout) {
+    try {
+        zooKeeper = new ZooKeeper(address, timeout, watchedEvent -&gt;
+                logger.debug(&quot;Zookeeper连接已建立...&quot;)
+        );
+    } catch (Exception e) {
+        logger.error(e.getMessage(), e);
+        throw new RuntimeException(e.getMessage(), e);
+    }
+}
+@Override
+public void lock() {
+    if (this.tryLock()) {
+        return;
+    }
+    throw new RuntimeException(&quot;未能拿到锁&quot;);
+}
+
+@Override
+public void lockInterruptibly() throws InterruptedException {
+    this.lock();
+}
+
+@Override
+public boolean tryLock() {
+    String lock = lockNamespace + &quot;/&quot; + lockKey;
+
+    try {
+        //确保zookeeper连接成功
+        ensureZookeeperConnect();
+        //确保根节点存在
+        ensureNameSpaceExist(lockNamespace);
+
+        //创建临时有序节点
+        //节点目录为/xx/xx，节点为lockKey_xxx
+        //currentNode值为lockKey_xxx
+        currentNode = zooKeeper.create(lock, new byte[0],
+                ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL).replace(lockNamespace + &quot;/&quot;, &quot;&quot;);
+
+        //取出所有子节点
+        List&lt;String&gt; childrenList = zooKeeper.getChildren(lockNamespace, false);
+        //竞争的节点列表
+        lockNodes = new ArrayList&lt;&gt;();
+        for (String children : childrenList) {
+            if (children.startsWith(lockKey)) {
+                lockNodes.add(children);
+            }
+        }
+        //排序
+        Collections.sort(lockNodes);
+        //如当前节点为最小节点，则成功获取锁
+        if (currentNode.equals(lockNodes.get(0))) {
+            locked = true;
+        }
+        return locked;
+    } catch (InterruptedException | KeeperException e) {
+        logger.error(e.getMessage(), e);
+        throw new RuntimeException(e);
+    }
+}
+/**
+ * Zookeeper分布式锁
+ * 实现思路：
+ * 使用Zookeeper最小节点的方式
+ * 执行过程：
+ * 1、创建根节点，在根节点下创建顺序节点
+ * 2、如当前创建的节点为根节点的所有子节点中最小的，则获取锁成功；
+ * 否则，找到当前节点的前一个节点，watch前一个节点，当前一个节点被删除时获得锁；另外，等待超时也不能获得锁
+ */
+@Override
+public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+    //等待锁
+    try {
+        if (tryLock()) {
+            return locked;
+        }
+        //找到当前节点的前一个节点
+        waitNode = lockNodes.get(Collections.binarySearch(lockNodes, currentNode) - 1);
+        waitLock(time, unit);
+        return locked;
+    } catch (KeeperException e) {
+        logger.error(e.getMessage(), e);
+        throw new RuntimeException(e);
+    }
+}
+
+/**
+ * 释放锁
+ */
+@Override
+public void unlock() {
+    try {
+        zooKeeper.delete(lockNamespace + &quot;/&quot; + currentNode, -1);
+        zooKeeper.close();
+        locked = false;
+    } catch (InterruptedException | KeeperException e) {
+        logger.error(e.getMessage(), e);
+    }
+}
+
+@Override
+public Condition newCondition() {
+    return null;
+}
+
+/**
+ * 等待锁
+ */
+private void waitLock(long time, TimeUnit unit) throws KeeperException, InterruptedException {
+    String waitLock = lockNamespace + &quot;/&quot; + waitNode;
+    logger.debug(&quot;等待锁 {} 释放&quot;, waitLock);
+
+    Stat stat = zooKeeper.exists(waitLock, watchedEvent -&gt; {
+        if (countDownLatch != null) {
+            locked = true;
+            countDownLatch.countDown();
+        }
+    });
+
+    //前一个节点此刻存在，等待，节点消失则成功获取锁
+    if (stat != null) {
+        countDownLatch = new CountDownLatch(1);
+        countDownLatch.await(time, unit);
+        countDownLatch = null;
+    } else {
+        //前一个节点此刻不存在，获得锁
+        locked = true;
+    }
+}
+
+/**
+ * 确保根节点存在
+ */
+private void ensureNameSpaceExist(String lockNamespace) throws KeeperException, InterruptedException {
+    Stat statS = zooKeeper.exists(lockNamespace, false);
+    if (statS == null) {
+        //如果根节点不存在，创建
+        zooKeeper.create(lockNamespace, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+    }
+}
+
+/**
+ * 确保zookeeper连接成功，防止出现连接还未完成就执行zookeeper的get/create/exsit操作出现错误KeeperErrorCode = ConnectionLoss
+ */
+private void ensureZookeeperConnect() throws InterruptedException {
+    CountDownLatch connectedLatch = new CountDownLatch(1);
+    zooKeeper.register(watchedEvent -&gt; {
+        if (watchedEvent.getState() == Watcher.Event.KeeperState.SyncConnected) {
+            connectedLatch.countDown();
+        }
+    });
+    //zookeeper连接中则等待
+    if (ZooKeeper.States.CONNECTING == zooKeeper.getState()) {
+        connectedLatch.await();
+    }
+}
+</code></pre><h2 id="3、最后"><a href="#3、最后" class="headerlink" title="3、最后"></a>3、最后</h2><p>另外推荐Redis、Zookeeper分布式锁的第三方实现Redisson、Curator锁。</p>
+<p><a href="https://github.com/vickze/vickze-lock" target="_blank" rel="external">完整代码（包括单元测试以及Redisson、Curator锁的使用）</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      Java实现Redis、Zookeeper分布式锁
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yk95.top/tags/Java/"/>
+    
+      <category term="Redis" scheme="http://yk95.top/tags/Redis/"/>
+    
+      <category term="ZooKeeper" scheme="http://yk95.top/tags/ZooKeeper/"/>
+    
+      <category term="分布式锁" scheme="http://yk95.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Hexo搭建个人Github博客</title>
