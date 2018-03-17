@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://yk95.top/static/img/Struts2请求执行流程.png">
 <meta property="og:image" content="http://yk95.top/static/img/主从数据库实现原理.png">
 <meta property="og:image" content="http://yk95.top/static/img/Https交互流程.png">
-<meta property="og:updated_time" content="2018-03-17T12:39:51.834Z">
+<meta property="og:updated_time" content="2018-03-17T14:56:26.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="成为Java顶尖程序员，先过了下面问题！（答案）">
 <meta name="twitter:description" content="成为Java顶尖程序员，先过了下面问题！">
@@ -894,7 +894,7 @@
 <p>3、slave重做中继日志中的事件，将改变反映它自己的数据。</p>
 <p><img src="/static/img/主从数据库实现原理.png" alt=""></p>
 <h2 id="5、select-from-table-t-where-size-gt-10-group-by-size-order-by-size的sql语句执行顺序？"><a href="#5、select-from-table-t-where-size-gt-10-group-by-size-order-by-size的sql语句执行顺序？" class="headerlink" title="5、select * from table t where size &gt; 10 group by size order by size的sql语句执行顺序？"></a>5、select * from table t where size &gt; 10 group by size order by size的sql语句执行顺序？</h2><p>sql语句执行顺序如下：</p>
-<p>where -&gt; group by -&gt; having -&gt; select -&gt; orderby</p>
+<p>where -&gt; group by -&gt; having -&gt; select -&gt; order by</p>
 <h2 id="6、如何优化数据库性能（索引、分库分表、批量操作、分页算法、升级硬盘SSD、业务优化、主从部署）"><a href="#6、如何优化数据库性能（索引、分库分表、批量操作、分页算法、升级硬盘SSD、业务优化、主从部署）" class="headerlink" title="6、如何优化数据库性能（索引、分库分表、批量操作、分页算法、升级硬盘SSD、业务优化、主从部署）"></a>6、如何优化数据库性能（索引、分库分表、批量操作、分页算法、升级硬盘SSD、业务优化、主从部署）</h2><p>1、选择合适的数据库引擎，使用索引</p>
 <p>2、分页获取数据，只获取需要的字段</p>
 <p>3、优化业务逻辑，减少数据库IO</p>
@@ -1047,7 +1047,7 @@
 <p>2、里氏代换原则（Liskov Substitution Principle）</p>
 <p>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科</p>
 <p>3、依赖倒转原则（Dependence Inversion Principle）</p>
-<p>这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。</p>
+<p>这个是开闭原则的基础，具体内容：面对接口编程，依赖于抽象而不依赖于具体。</p>
 <p>4、接口隔离原则（Interface Segregation Principle）</p>
 <p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</p>
 <p>5、迪米特法则（最少知道原则）（Demeter Principle）</p>
@@ -1312,18 +1312,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -1337,6 +1325,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">分布式锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
             
             <div class="clearfix"></div>
