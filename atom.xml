@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yk95.top/"/>
-  <updated>2018-03-17T14:56:26.118Z</updated>
+  <updated>2018-05-01T14:25:10.347Z</updated>
   <id>http://yk95.top/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yk95.top/2018/01/30/%E6%88%90%E4%B8%BAJava%E9%A1%B6%E5%B0%96%E7%A8%8B%E5%BA%8F%E5%91%98%EF%BC%8C%E5%85%88%E8%BF%87%E4%BA%86%E4%B8%8B%E9%9D%A2%E9%97%AE%E9%A2%98%EF%BC%81%EF%BC%88%E7%AD%94%E6%A1%88%EF%BC%89/"/>
     <id>http://yk95.top/2018/01/30/成为Java顶尖程序员，先过了下面问题！（答案）/</id>
     <published>2018-01-29T16:00:00.000Z</published>
-    <updated>2018-03-17T14:56:26.118Z</updated>
+    <updated>2018-05-01T14:25:10.347Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/31552882" target="_blank" rel="external">成为Java顶尖程序员，先过了下面问题！</a></p>
 <p>答案源自网上收集及自己的一些的见解（有些知识可能理解的不对，持续修改中），部分难题只附上了链接。</p>
@@ -716,7 +716,7 @@
 <p>支持行锁</p>
 <p>不支持FULLTEXT类型的索引（在Mysql5.6已引入）</p>
 <p>不保存表的具体行数，扫描表来计算有多少行</p>
-<p>对于AUTO_INCREMENT类型的字段，必须包含只有该字段的索引</p>
+<p>对于AUTO_INCREMENT类型的字段，不能与其他字段建立组合索引</p>
 <p>DELETE 表时，是一行一行的删除</p>
 <p>InnoDB 把数据和索引存放在表空间里面</p>
 <p>跨平台可直接拷贝使用</p>
