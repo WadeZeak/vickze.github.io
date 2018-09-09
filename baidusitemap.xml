@@ -11,13 +11,13 @@
         <title>Docker学习-基础环境搭建</title>
         <pubTime>2018-09-08T16:00:00.000Z</pubTime>
         
-        <tag>Redis</tag>
-         
         <tag>Docker</tag>
          
         <tag>Nginx</tag>
          
         <tag>Mysql</tag>
+         
+        <tag>Redis</tag>
          
         <tag>Rabbitmq</tag>
          
@@ -53,9 +53,9 @@
         <title>Java实现Redis、Zookeeper分布式锁</title>
         <pubTime>2018-01-11T16:00:00.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>Redis</tag>
+         
+        <tag>Java</tag>
          
         <tag>ZooKeeper</tag>
          
