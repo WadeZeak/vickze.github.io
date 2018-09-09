@@ -165,34 +165,10 @@
 <p>参考：</p>
 <p><a href="http://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="external">Docker菜鸟教程</a></p>
 <p><a href="https://www.cnblogs.com/moxiaoan/p/5683743.html" target="_blank" rel="external">CentOS7使用firewalld打开关闭防火墙与端口</a></p>
-<h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><figure class="highlight plain"><figcaption><span>-y install docker-io```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里安装完后还遇到个很奇怪的问题，主机ip消失了，原本用工具连着虚拟机的，突然就断了，用```ip addr```命令看到多了个```docker0```，原本主机的ip地址没了，最后通过命令```service network restart```重新启动网络服务就ok了。</div><div class="line"></div><div class="line">安装完成后启动</div><div class="line"></div><div class="line">```service docker start</div></pre></td></tr></table></figure>
-<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>拉取nginx镜像</p>
-<figure class="highlight docker"><figcaption><span>pull nginx```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动nginx</div><div class="line"></div><div class="line">```docker <span class="keyword">run</span> -p 80:80 --name nginx  -d nginx</div></pre></td></tr></table></figure>
-<blockquote>
-<p>命令详细：<a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="external">Docker命令大全</a></p>
-</blockquote>
-<p>开启宿主机80端口</p>
-<figure class="highlight plain"><figcaption><span>--zone=public --add-port=80/tcp --permanent```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```firewall-cmd --reload</div></pre></td></tr></table></figure>
-<p>访问宿主机ip可看到nginx启动页</p>
-<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>拉取mysql镜像</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#mysql8</span></div><div class="line"><span class="attribute">docker</span> pull mysql</div></pre></td></tr></table></figure>
-<p>启动mysql</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="keyword">run</span><span class="bash"> --name mysql -p 3306:3306 <span class="_">-e</span> MYSQL_ROOT_PASSWORD=123456 <span class="_">-d</span> mysql</span></div></pre></td></tr></table></figure>
-<p>命令说明：</p>
-<ul>
-<li>-e MYSQL_ROOT_PASSWORD=123456：初始化root用户的密码</li>
-</ul>
-<p>因为mysql8的密码认证机制改了，可能我们用的mysql可视化工具并不支持，所以我们需要把mysql的密码认证改回旧版本。</p>
-<p>进入容器</p>
-<figure class="highlight docker"><figcaption><span>exec -it mysql bash```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">登录mysql</div><div class="line"></div><div class="line">```mysql -u root -p</div></pre></td></tr></table></figure>
-<p>修改</p>
-<figure class="highlight plain"><figcaption><span>USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">开启宿主机3306端口，使用宿主机ip 3306端口可以连接到mysql。</div><div class="line"></div><div class="line">### 安装redis</div><div class="line"></div><div class="line">拉取redis镜像</div></pre></td></tr></table></figure>
-<p>docker pull redis<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动redis</div></pre></td></tr></table></figure></p>
-<p>docker run -p 6379:6379 –name redis  -d redis<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">开启宿主机<span class="number">6379</span>端口，使用宿主机ip <span class="number">6379</span>端口可以连接到redis。</div><div class="line"></div><div class="line">### 安装rabbitmq</div><div class="line"></div><div class="line">拉取镜像</div></pre></td></tr></table></figure></p>
-<p>#安装rabbitmq:management版本带管理页面<br>docker pull rabbitmq:management<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动</div></pre></td></tr></table></figure></p>
-<p>docker run -d -p 5672:5672 -p 15672:15672 –name rabbitmq rabbitmq:management<br>```</p>
-<p>开启宿主机5672、15672端口，使用宿主机ip 5672端口连接到rabbitmq，访问宿主机ip 端口15672可以看到rabbitmq管理页面。</p>
-
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+        
+          <a class="article-more-a" href="/2018/09/09/Docker学习-基础环境搭建/#more">more >></a>
+        
       
 
       
@@ -205,6 +181,10 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		 
@@ -214,10 +194,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -417,11 +393,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -660,15 +636,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,7 +644,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Rabbitmq</a>
+                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">分布式锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,15 +664,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">分布式锁</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Rabbitmq</a>
               </li>
             
             <div class="clearfix"></div>

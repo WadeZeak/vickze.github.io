@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.yk95.top/"/>
-  <updated>2018-09-09T08:38:36.243Z</updated>
+  <updated>2018-09-09T08:49:50.912Z</updated>
   <id>http://blog.yk95.top/</id>
   
   <author>
@@ -20,15 +20,15 @@
     <link href="http://blog.yk95.top/2018/09/09/Docker%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://blog.yk95.top/2018/09/09/Docker学习-基础环境搭建/</id>
     <published>2018-09-08T16:00:00.000Z</published>
-    <updated>2018-09-09T08:38:36.243Z</updated>
+    <updated>2018-09-09T08:49:50.912Z</updated>
     
     <content type="html"><![CDATA[<p>环境：Linux CentOS7</p>
 <p>参考：</p>
 <p><a href="http://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="external">Docker菜鸟教程</a></p>
 <p><a href="https://www.cnblogs.com/moxiaoan/p/5683743.html" target="_blank" rel="external">CentOS7使用firewalld打开关闭防火墙与端口</a></p>
-<h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><figure class="highlight plain"><figcaption><span>-y install docker-io```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里安装完后还遇到个很奇怪的问题，主机ip消失了，原本用工具连着虚拟机的，突然就断了，用```ip addr```命令看到多了个```docker0```，原本主机的ip地址没了，最后通过命令```service network restart```重新启动网络服务就ok了。</div><div class="line"></div><div class="line">安装完成后启动</div><div class="line"></div><div class="line">```service docker start</div></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><figure class="highlight plain"><figcaption><span>-y install docker-io```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里安装完后还遇到个很奇怪的问题，主机ip消失了，原本用工具连着虚拟机的，突然就断了，用```ip addr```命令看到多了个```docker0```，原本主机的ip地址没了，最后通过命令```service network restart```重新启动网络服务就ok了。</div><div class="line"></div><div class="line">安装完成后启动</div><div class="line"></div><div class="line">```service docker start</div></pre></td></tr></table></figure>
 <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>拉取nginx镜像</p>
-<figure class="highlight docker"><figcaption><span>pull nginx```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动nginx</div><div class="line"></div><div class="line">```docker <span class="keyword">run</span> -p 80:80 --name nginx  -d nginx</div></pre></td></tr></table></figure>
+<figure class="highlight docker"><figcaption><span>pull nginx```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动nginx</div><div class="line"></div><div class="line">```docker <span class="keyword">run</span><span class="bash"> -p 80:80 --name nginx  <span class="_">-d</span> nginx</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>命令详细：<a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="external">Docker命令大全</a></p>
 </blockquote>
@@ -62,13 +62,13 @@
     </summary>
     
     
+      <category term="Redis" scheme="http://blog.yk95.top/tags/Redis/"/>
+    
       <category term="Docker" scheme="http://blog.yk95.top/tags/Docker/"/>
     
       <category term="Nginx" scheme="http://blog.yk95.top/tags/Nginx/"/>
     
       <category term="Mysql" scheme="http://blog.yk95.top/tags/Mysql/"/>
-    
-      <category term="Redis" scheme="http://blog.yk95.top/tags/Redis/"/>
     
       <category term="Rabbitmq" scheme="http://blog.yk95.top/tags/Rabbitmq/"/>
     
@@ -1012,9 +1012,9 @@
     </summary>
     
     
-      <category term="Redis" scheme="http://blog.yk95.top/tags/Redis/"/>
-    
       <category term="Java" scheme="http://blog.yk95.top/tags/Java/"/>
+    
+      <category term="Redis" scheme="http://blog.yk95.top/tags/Redis/"/>
     
       <category term="ZooKeeper" scheme="http://blog.yk95.top/tags/ZooKeeper/"/>
     
