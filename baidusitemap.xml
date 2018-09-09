@@ -5,19 +5,19 @@
     
   <url>
     <loc>http://blog.yk95.top/2018/09/09/Docker%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2018-09-09T08:49:50.912Z</lastmod>
+    <lastmod>2018-09-09T08:54:43.942Z</lastmod>
     <data>
         <display>
         <title>Docker学习-基础环境搭建</title>
         <pubTime>2018-09-08T16:00:00.000Z</pubTime>
         
+        <tag>Redis</tag>
+         
         <tag>Docker</tag>
          
         <tag>Nginx</tag>
          
         <tag>Mysql</tag>
-         
-        <tag>Redis</tag>
          
         <tag>Rabbitmq</tag>
          
@@ -53,9 +53,9 @@
         <title>Java实现Redis、Zookeeper分布式锁</title>
         <pubTime>2018-01-11T16:00:00.000Z</pubTime>
         
-        <tag>Redis</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Redis</tag>
          
         <tag>ZooKeeper</tag>
          
