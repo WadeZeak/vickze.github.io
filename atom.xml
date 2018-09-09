@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yk95.top/"/>
+  <link href="http://blog.yk95.top/"/>
   <updated>2018-09-09T08:38:36.243Z</updated>
-  <id>http://yk95.top/</id>
+  <id>http://blog.yk95.top/</id>
   
   <author>
     <name>vickze</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Docker学习-基础环境搭建</title>
-    <link href="http://yk95.top/2018/09/09/Docker%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yk95.top/2018/09/09/Docker学习-基础环境搭建/</id>
+    <link href="http://blog.yk95.top/2018/09/09/Docker%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://blog.yk95.top/2018/09/09/Docker学习-基础环境搭建/</id>
     <published>2018-09-08T16:00:00.000Z</published>
     <updated>2018-09-09T08:38:36.243Z</updated>
     
@@ -28,7 +28,7 @@
 <p><a href="https://www.cnblogs.com/moxiaoan/p/5683743.html" target="_blank" rel="external">CentOS7使用firewalld打开关闭防火墙与端口</a></p>
 <h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><figure class="highlight plain"><figcaption><span>-y install docker-io```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里安装完后还遇到个很奇怪的问题，主机ip消失了，原本用工具连着虚拟机的，突然就断了，用```ip addr```命令看到多了个```docker0```，原本主机的ip地址没了，最后通过命令```service network restart```重新启动网络服务就ok了。</div><div class="line"></div><div class="line">安装完成后启动</div><div class="line"></div><div class="line">```service docker start</div></pre></td></tr></table></figure>
 <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>拉取nginx镜像</p>
-<figure class="highlight docker"><figcaption><span>pull nginx```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动nginx</div><div class="line"></div><div class="line">```docker <span class="keyword">run</span><span class="bash"> -p 80:80 --name nginx  <span class="_">-d</span> nginx</span></div></pre></td></tr></table></figure>
+<figure class="highlight docker"><figcaption><span>pull nginx```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">启动nginx</div><div class="line"></div><div class="line">```docker <span class="keyword">run</span> -p 80:80 --name nginx  -d nginx</div></pre></td></tr></table></figure>
 <blockquote>
 <p>命令详细：<a href="http://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="external">Docker命令大全</a></p>
 </blockquote>
@@ -62,22 +62,22 @@
     </summary>
     
     
-      <category term="Redis" scheme="http://yk95.top/tags/Redis/"/>
+      <category term="Docker" scheme="http://blog.yk95.top/tags/Docker/"/>
     
-      <category term="Docker" scheme="http://yk95.top/tags/Docker/"/>
+      <category term="Nginx" scheme="http://blog.yk95.top/tags/Nginx/"/>
     
-      <category term="Nginx" scheme="http://yk95.top/tags/Nginx/"/>
+      <category term="Mysql" scheme="http://blog.yk95.top/tags/Mysql/"/>
     
-      <category term="Mysql" scheme="http://yk95.top/tags/Mysql/"/>
+      <category term="Redis" scheme="http://blog.yk95.top/tags/Redis/"/>
     
-      <category term="Rabbitmq" scheme="http://yk95.top/tags/Rabbitmq/"/>
+      <category term="Rabbitmq" scheme="http://blog.yk95.top/tags/Rabbitmq/"/>
     
   </entry>
   
   <entry>
     <title>成为Java顶尖程序员，先过了下面问题！（答案）</title>
-    <link href="http://yk95.top/2018/01/30/%E6%88%90%E4%B8%BAJava%E9%A1%B6%E5%B0%96%E7%A8%8B%E5%BA%8F%E5%91%98%EF%BC%8C%E5%85%88%E8%BF%87%E4%BA%86%E4%B8%8B%E9%9D%A2%E9%97%AE%E9%A2%98%EF%BC%81%EF%BC%88%E7%AD%94%E6%A1%88%EF%BC%89/"/>
-    <id>http://yk95.top/2018/01/30/成为Java顶尖程序员，先过了下面问题！（答案）/</id>
+    <link href="http://blog.yk95.top/2018/01/30/%E6%88%90%E4%B8%BAJava%E9%A1%B6%E5%B0%96%E7%A8%8B%E5%BA%8F%E5%91%98%EF%BC%8C%E5%85%88%E8%BF%87%E4%BA%86%E4%B8%8B%E9%9D%A2%E9%97%AE%E9%A2%98%EF%BC%81%EF%BC%88%E7%AD%94%E6%A1%88%EF%BC%89/"/>
+    <id>http://blog.yk95.top/2018/01/30/成为Java顶尖程序员，先过了下面问题！（答案）/</id>
     <published>2018-01-29T16:00:00.000Z</published>
     <updated>2018-05-01T14:25:10.347Z</updated>
     
@@ -986,14 +986,14 @@
     </summary>
     
     
-      <category term="Java" scheme="http://yk95.top/tags/Java/"/>
+      <category term="Java" scheme="http://blog.yk95.top/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>Java实现Redis、Zookeeper分布式锁</title>
-    <link href="http://yk95.top/2018/01/12/Java%E5%AE%9E%E7%8E%B0Redis%E3%80%81Zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
-    <id>http://yk95.top/2018/01/12/Java实现Redis、Zookeeper分布式锁/</id>
+    <link href="http://blog.yk95.top/2018/01/12/Java%E5%AE%9E%E7%8E%B0Redis%E3%80%81Zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
+    <id>http://blog.yk95.top/2018/01/12/Java实现Redis、Zookeeper分布式锁/</id>
     <published>2018-01-11T16:00:00.000Z</published>
     <updated>2018-01-30T12:43:06.144Z</updated>
     
@@ -1012,20 +1012,20 @@
     </summary>
     
     
-      <category term="Java" scheme="http://yk95.top/tags/Java/"/>
+      <category term="Redis" scheme="http://blog.yk95.top/tags/Redis/"/>
     
-      <category term="Redis" scheme="http://yk95.top/tags/Redis/"/>
+      <category term="Java" scheme="http://blog.yk95.top/tags/Java/"/>
     
-      <category term="ZooKeeper" scheme="http://yk95.top/tags/ZooKeeper/"/>
+      <category term="ZooKeeper" scheme="http://blog.yk95.top/tags/ZooKeeper/"/>
     
-      <category term="分布式锁" scheme="http://yk95.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
+      <category term="分布式锁" scheme="http://blog.yk95.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
     
   </entry>
   
   <entry>
     <title>使用Hexo搭建个人Github博客</title>
-    <link href="http://yk95.top/2017/05/30/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAGithub%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://yk95.top/2017/05/30/使用Hexo搭建个人Github博客/</id>
+    <link href="http://blog.yk95.top/2017/05/30/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAGithub%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://blog.yk95.top/2017/05/30/使用Hexo搭建个人Github博客/</id>
     <published>2017-05-29T16:00:00.000Z</published>
     <updated>2018-01-30T12:42:54.520Z</updated>
     
@@ -1068,7 +1068,7 @@
 <p><img src="/static/img/2017-5-29_16-11-59.png" alt=""></p>
 <p>然后将你的域名映射到该IP地址，这里以博主的阿里云购买的域名举例，在阿里云域名控制台添加一条解析，如下图。</p>
 <p><img src="/static/img/2017-5-29_16-18-31.png" alt=""></p>
-<p>等解析生效就可以使用域名访问Github page了，例如博主的：<a href="http://yk95.top">http://yk95.top</a></p>
+<p>等解析生效就可以使用域名访问Github page了，例如博主的：<a href="http://yk95.top" target="_blank" rel="external">http://yk95.top</a></p>
 <p>使用域名访问Github page还需要注意一点，我们使用 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 命令将博客发布到Git时，Hexo会将整个仓库全部清空，然后才提交，这样我们创建的CNAME文件就被删除了，这里提供一个简单的解决方案，在本地博客public文件夹下创建CNAME文件，发布到Git时不clean使用 <code>hexo g &amp;&amp; hexo d</code> 命令，发布时会将CNAME文件一起提交。</p>
 <h1 id="四、发布自己的第一篇博客"><a href="#四、发布自己的第一篇博客" class="headerlink" title="四、发布自己的第一篇博客"></a>四、发布自己的第一篇博客</h1><p>将博客搭建起来之后就可以开始写博客了，首先需要配置一些基本信息，这些内容不会解析到博客正文中，见下图。</p>
 <p><img src="/static/img/2017-5-29_16-54-21.png" alt=""></p>
@@ -1084,11 +1084,11 @@
     </summary>
     
     
-      <category term="Github" scheme="http://yk95.top/tags/Github/"/>
+      <category term="Github" scheme="http://blog.yk95.top/tags/Github/"/>
     
-      <category term="Hexo" scheme="http://yk95.top/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://blog.yk95.top/tags/Hexo/"/>
     
-      <category term="博客" scheme="http://yk95.top/tags/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="http://blog.yk95.top/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
