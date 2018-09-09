@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.yk95.top/"/>
-  <updated>2018-09-09T08:54:43.942Z</updated>
+  <updated>2018-09-09T08:58:46.853Z</updated>
   <id>http://blog.yk95.top/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="http://blog.yk95.top/2018/09/09/Docker%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://blog.yk95.top/2018/09/09/Docker学习-基础环境搭建/</id>
     <published>2018-09-08T16:00:00.000Z</published>
-    <updated>2018-09-09T08:54:43.942Z</updated>
+    <updated>2018-09-09T08:58:46.853Z</updated>
     
     <content type="html"><![CDATA[<p>环境：Linux CentOS7</p>
 <p>参考：</p>
 <p><a href="http://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="external">Docker菜鸟教程</a></p>
 <p><a href="https://www.cnblogs.com/moxiaoan/p/5683743.html" target="_blank" rel="external">CentOS7使用firewalld打开关闭防火墙与端口</a></p>
-<h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><p><code>yum -y install docker-io</code></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><p><code>yum -y install docker-io</code></p>
 <p>这里安装完后还遇到个很奇怪的问题，主机ip消失了，原本用工具连着虚拟机的，突然就断了，用<code>ip addr</code>命令看到多了个<code>docker0</code>，原本主机的ip地址没了，最后通过命令<code>service network restart</code>重新启动网络服务就ok了。</p>
 <p>安装完成后启动</p>
 <p><code>service docker start</code></p>

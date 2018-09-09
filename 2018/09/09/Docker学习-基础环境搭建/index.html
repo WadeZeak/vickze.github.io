@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blog.yk95.top/2018/09/09/Docker学习-基础环境搭建/index.html">
 <meta property="og:site_name" content="vickze&#39;blog">
 <meta property="og:description" content="Docker学习">
-<meta property="og:updated_time" content="2018-09-09T08:54:43.942Z">
+<meta property="og:updated_time" content="2018-09-09T08:58:46.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习-基础环境搭建">
 <meta name="twitter:description" content="Docker学习">
@@ -164,7 +164,7 @@
 <p>参考：</p>
 <p><a href="http://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="external">Docker菜鸟教程</a></p>
 <p><a href="https://www.cnblogs.com/moxiaoan/p/5683743.html" target="_blank" rel="external">CentOS7使用firewalld打开关闭防火墙与端口</a></p>
-<h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><p><code>yum -y install docker-io</code></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><p><code>yum -y install docker-io</code></p>
 <p>这里安装完后还遇到个很奇怪的问题，主机ip消失了，原本用工具连着虚拟机的，突然就断了，用<code>ip addr</code>命令看到多了个<code>docker0</code>，原本主机的ip地址没了，最后通过命令<code>service network restart</code>重新启动网络服务就ok了。</p>
 <p>安装完成后启动</p>
 <p><code>service docker start</code></p>
@@ -333,7 +333,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装docker"><span class="toc-number">1.</span> <span class="toc-text">yum安装docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nginx"><span class="toc-number">2.</span> <span class="toc-text">安装nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装mysql"><span class="toc-number">3.</span> <span class="toc-text">安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装redis"><span class="toc-number">4.</span> <span class="toc-text">安装redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装rabbitmq"><span class="toc-number">5.</span> <span class="toc-text">安装rabbitmq</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum安装docker"><span class="toc-number">1.1.</span> <span class="toc-text">yum安装docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nginx"><span class="toc-number">1.2.</span> <span class="toc-text">安装nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装mysql"><span class="toc-number">1.3.</span> <span class="toc-text">安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装redis"><span class="toc-number">1.4.</span> <span class="toc-text">安装redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装rabbitmq"><span class="toc-number">1.5.</span> <span class="toc-text">安装rabbitmq</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -484,6 +484,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -497,18 +509,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Rabbitmq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
             
             <div class="clearfix"></div>
